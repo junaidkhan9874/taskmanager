@@ -1,4 +1,3 @@
-// lib/presentation/widgets/task_item.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/entities/task.dart';
@@ -7,7 +6,7 @@ import '../providers/task_provider.dart';
 class TaskItem extends ConsumerWidget {
   final Task task;
 
-  TaskItem({required this.task});
+  const TaskItem({super.key, required this.task});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -15,7 +14,7 @@ class TaskItem extends ConsumerWidget {
       title: Text(task.title),
       subtitle: Text(task.description),
       trailing: InkWell(
-        onTap: (){
+        onTap: () {
           _showDeleteDialog(context, ref, task);
         },
         child: const Icon(Icons.delete),

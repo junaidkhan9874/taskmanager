@@ -1,13 +1,12 @@
-// lib/presentation/providers/task_provider.dart
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taskmanager/domain/repositories/task_repository.dart';
+
 import '../../data/repositories/task_repository_impl.dart';
 import '../../domain/entities/task.dart';
 import '../../domain/usecases/add_task.dart';
 import '../../domain/usecases/delete_task.dart';
 import '../../domain/usecases/get_tasks.dart';
-import '../../domain/usecases/update_task.dart';
 import '../notifiers/task_notifier.dart';
 
 // Define the provider for SharedPreferences
@@ -32,10 +31,6 @@ final addTaskProvider = Provider<AddTask>((ref) {
   return AddTask(repository);
 });
 
-final updateTaskProvider = Provider<UpdateTask>((ref) {
-  final repository = ref.read(taskRepositoryProvider);
-  return UpdateTask(repository);
-});
 
 final deleteTaskProvider = Provider<DeleteTask>((ref) {
   final repository = ref.read(taskRepositoryProvider);
@@ -46,12 +41,10 @@ final deleteTaskProvider = Provider<DeleteTask>((ref) {
 final taskNotifierProvider = StateNotifierProvider<TaskNotifier, List<Task>>((ref) {
   final getTasks = ref.read(getTasksProvider);
   final addTask = ref.read(addTaskProvider);
-  final updateTask = ref.read(updateTaskProvider);
   final deleteTask = ref.read(deleteTaskProvider);
   return TaskNotifier(
     getTasks: getTasks,
     addTask: addTask,
-    updateTask: updateTask,
     deleteTask: deleteTask,
   );
 });

@@ -1,4 +1,3 @@
-// lib/presentation/screens/home_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/task_provider.dart';
@@ -19,7 +18,7 @@ class HomeScreen extends ConsumerWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => AddTaskScreen()),
+            MaterialPageRoute(builder: (context) => const AddTaskScreen()),
           );
         },
         child: const Icon(Icons.add),
